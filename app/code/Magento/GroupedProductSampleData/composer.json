@@ -3,10 +3,10 @@
     "description": "N/A",
     "require": {
         "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
-        "magento/module-sample-data": "*",
-        "magento/module-catalog-sample-data": "*",
-        "magento/module-grouped-product": "*",
-        "magento/module-store": "*"
+        "magento/module-sample-data": "100.3.*",
+        "magento/module-catalog-sample-data": "100.4.*",
+        "magento/module-grouped-product": "100.3.*",
+        "magento/module-store": "100.3.*"
     },
     "type": "magento2-module",
     "license": [
@@ -20,5 +20,6 @@
         "psr-4": {
             "Magento\\GroupedProductSampleData\\": ""
         }
-    }
+    },
+    "version": "100.4.0-rc89542"
 }
