@@ -140,8 +140,8 @@ class Product
                 $this->prepareProduct($product, $data);
 
                 $product->save();
-                $this->installGallery($product);
                 $this->addAdditionalProductData($product, $data);
+                $this->installGallery($product);
             }
         }
     }
