@@ -78,7 +78,7 @@ class Product extends \Magento\CatalogSampleData\Model\Product
     /**
      * {@inheritdoc}
      */
-    protected function addAddtionalProductData($product, $data)
+    protected function addAdditionalProductData($product, $data)
     {
         $product
             ->setCanSaveConfigurableAttributes(true)
