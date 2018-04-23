@@ -27,6 +27,11 @@ class Product extends \Magento\CatalogSampleData\Model\Product
     private $optionFactory;
 
     /**
+     * @var \Magento\Bundle\Api\ProductOptionRepositoryInterface
+     */
+    private $optionRepository;
+
+    /**
      * Product constructor.
      * @param SampleDataContext $sampleDataContext
      * @param \Magento\Catalog\Model\ProductFactory $productFactory
@@ -35,6 +40,7 @@ class Product extends \Magento\CatalogSampleData\Model\Product
      * @param \Magento\CatalogSampleData\Model\Product\Gallery $gallery
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Eav\Model\Config $eavConfig
+     * @param \Magento\Bundle\Api\ProductOptionRepositoryInterface $optionRepository
      */
     public function __construct(
         SampleDataContext $sampleDataContext,
@@ -43,9 +49,11 @@ class Product extends \Magento\CatalogSampleData\Model\Product
         \Magento\BundleSampleData\Model\Product\Converter $converter,
         \Magento\CatalogSampleData\Model\Product\Gallery $gallery,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Eav\Model\Config $eavConfig
+        \Magento\Eav\Model\Config $eavConfig,
+        \Magento\Bundle\Api\ProductOptionRepositoryInterface $optionRepository
     ) {
         $this->eavConfig = $eavConfig;
+        $this->optionRepository = $optionRepository;
         parent::__construct(
             $sampleDataContext,
             $productFactory,
@@ -68,9 +76,9 @@ class Product extends \Magento\CatalogSampleData\Model\Product
     private $productRepository;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    protected function prepareProduct($product, $data)
+    protected function addAddtionalProductData($product, $data)
     {
         $product
             ->setCanSaveConfigurableAttributes(true)
@@ -101,7 +109,7 @@ class Product extends \Magento\CatalogSampleData\Model\Product
                 $links[] = $link;
             }
             $option->setProductLinks($links);
-            $options[] = $option;
+            $this->optionRepository->save($product, $option);
         }
 
         $extension = $product->getExtensionAttributes();

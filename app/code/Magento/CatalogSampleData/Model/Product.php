@@ -141,6 +141,7 @@ class Product
 
                 $product->save();
                 $this->installGallery($product);
+                $this->addAdditionalProductData($product, $data);
             }
         }
     }
@@ -172,6 +173,19 @@ class Product
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function prepareProduct($product, $data)
+    {
+        return $this;
+    }
+
+    /**
+     * Add attributes and sub-entities to a product after it is saved.
+     *
+     * @param $product
+     * @param $data
+     * @return $this
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    protected function addAdditionalProductData($product, $data)
     {
         return $this;
     }
